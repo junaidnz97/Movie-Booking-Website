@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+
+			MovieBooking
+
+		</title>
+
+		<meta charset="utf-8">
+ 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  		<link rel="stylesheet" type="text/css" href="public/style.css">
+	</head>
+
+	<body>
+		<% include navbar.ejs %>
+			Search by Movie<br>
+
+	<form action="/set_movie" method="post" id="searchform" class="f1">
+
+		<p style="display:inline">Movie Name:</p>
+		<select form="searchform" name="MovieName">
+			<option value="None">None</option>
+			<% for(var i = 0 ; i < movie.length ;i++){%>
+				<option value="<%= movie[i].m_name %>"><%= movie[i].m_name %></option>
+			<%}%>
+		</select>
+		<br>
+		<p style="display:inline">Movie Rating Upper Limit</p>
+		<select form="searchform" name="MovieRatingTop">
+			<option value="None">None</option>
+			<% for(var i = 10 ; i > 7 ;i--){%>
+				<option value=<%= i %>><%= i %>-</option>
+			<%}%>
+		</select>
+		<p style="display:inline">Movie Rating Lower Limit</p>
+		<select form="searchform" name="MovieRatingBottom">
+			<option value="None">None</option>
+			<% for(var i = 9 ; i > 6 ;i--){%>
+				<option value=<%= i %>><%= i %>+</option>
+			<%}%>
+		</select>
+		<br>
+
+		<p style="display:inline">Director Name:</p>
+		<select form="searchform" name="DirectorName">
+			<option value="None">None</option>
+			<% for(var i = 0 ; i < directors.length ;i++){%>
+				<option value="<%= directors[i].p_name %>"><%= directors[i].p_name %></option>
+			<%}%>
+		</select>
+		<p style="display:inline">Director Gender:</p>
+		<select form="searchform" name="DirectorGender">
+			<option value="None">None</option>
+  			<option value="M">Male</option>
+  			<option value="F">Female</option>
+		</select>
+		<br>
+		<p style="display:inline">Start Year:</p>
+		<select form="searchform" name="StartYear">
+			<option value="None">None</option>
+			<% for(var i = time[0].end ; i >= time[0].start ;i--){%>
+				<option value=<%= i %> ><%= i %></option>
+			<%}%>
+		</select>
+		<p style="display:inline">End year:</p>
+		<select form="searchform" name="EndYear">
+			<option value="None">None</option>
+			<% for(var i = time[0].end ; i >= time[0].start ;i--){%>
+				<option value=<%= i %> ><%= i %></option>
+			<%}%>
+		</select>
+	<br><br>
+		<p style="display:inline">Actor Name:</p><select form="searchform" name="ActorName">
+			<option value="None">None</option>
+			<% for(var i = 0 ; i < actor.length ;i++){%>
+				<option value="<%= actor[i].p_name %>"><%= actor[i].p_name %></option>
+			<%}%>
+		</select>
+		<p style="display:inline">Actor Gender:</p>
+		<select form="searchform" name="ActorGender">
+			<option value="None">None</option>
+  			<option value="M">Male</option>
+  			<option value="F">Female</option>
+		</select>
+		<br>
+<button  type="submit" name="x" value="s1" class="b1">search and change the movie</button>
+	</form>
+	</body>
+	</html>

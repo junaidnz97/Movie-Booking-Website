@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+
+			MovieBooking
+
+		</title>
+<head>
+		<meta charset="utf-8">
+ 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  		<link rel="stylesheet" type="text/css" href="public/styles.css">
+</head>
+<body>
+  <h1>  CINEMA PARADISO </h1>
+
+  <form method="GET" action = "/choice">
+  <div class="row container-fluid">
+      <button class = "button col-md-4" name="option" value = "bookTicket">BOOK TICKET</button>
+      <button class = "button col-md-4" name="option" value = "cancelTicket">CANCEL TICKET</button>
+      <button class = "button col-md-4" name="option" value = "ticketDetails">TICKET DETAILS</button>
+  </div>
+</form>
+
+</div>
+  <h2 style="padding-top:30px">now Showing</h2>
+	<% for(var i = 0; i < movie.length ; i++) {%>
+	<div class=" col-sm-6 card">
+	 	  <div class="card-block">
+			<h3><%= movie[i].m_name %></h3>
+		  <h3>Director :<%= movie[i].p_name %></h3>
+		  <h3>IMDb rating :<%= movie[i].imdb_rating %></h3>
+	  </div>
+	</div>
+
+<%}%>
+
+</html>

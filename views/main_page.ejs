@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+
+			MovieBooking
+
+		</title>
+
+		<meta charset="utf-8">
+ 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  		<link rel="stylesheet" type="text/css" href="public/style.css">
+
+  		<script type="text/javascript">
+
+  			function setdisable(){
+  				var arr="<%= data.selected %>";
+  				arr=arr.split(",");
+
+  				console.log(arr);
+  				var i;
+  				for(i=1;i<=arr.length;i++)
+  				{
+  					//console.log(i);
+  					var x=i;
+  					x=x.toString();
+  					if(arr[i-1]=="1"){
+							console.log(i);
+  						document.getElementById(x).disabled=true;
+							document.getElementById(x).checked=true;
+						}
+  				}
+
+  			}
+
+  		</script>
+	</head>
+
+	<body onload="setdisable()">
+			<% include navbar.ejs %>
+		<table>
+		<tr>
+		<td width="33%"></td>
+		<td width="33%">
+			<table  width="1000px" class="box">
+			<thead >
+  			<tr>
+  				<td></td>
+    				<% data.rows.forEach(function(item){ %>
+
+						<td>
+							<%= item %>
+
+						</td>
+
+					<% }); %>
+  			</tr>
+			</thead>
+	<% var x=1 %>
+	<form method="POST" action="/cus_form" >
+	<% data.cols.forEach(function(i){  %>
+
+			<tr>
+    		<td><%= i %>	</td>
+
+    		<% data.rows.forEach(function(j){   %>
+
+						<td>
+	<input type="checkbox" name="<%= x %>" value="<%= x %>" id="<%= x %>">
+
+				 </td>
+
+					<% x=x+1; %>
+					<% }); %>
+
+ 			</tr>
+
+	<% }); %>
+
+
+
+	</table>
+	<div style="padding-top :30px ; text-align:center">
+		<img src="/public/img.png">
+	</div>
+	<div style="padding-top :30px ; text-align:center">
+		<button type="submit">ADD</button>
+	</div>
+	</form>
+
+
+	</td>
+	<td width="33%"></td>
+	</tr>
+	</table>
+
+
+
+
+
+	</body>
+
+</html>

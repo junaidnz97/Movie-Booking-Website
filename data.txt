@@ -1,0 +1,19 @@
+create table screen (seat_no int primary key,
+  row varchar(10),
+  cols varchar(10),
+  status bool);
+create table ticket(t_id int auto_increment primary key,
+  b_id varchar(7),
+  cus_name varchar(26),
+  phone varchar(10),
+  seat_no int,
+  foreign key (seat_no) references screen(seat_no));
+create table movie(movie_id int auto_increment primary key,
+  movie_name varchar(20),
+  director varchar(20),
+  production varchar(25),
+  rating float,
+  state bool);
+
+insert into movie (movie_name,director,production,rating,state) values
+("The Godfather","Francis Ford Coppola","Albert S. Ruddy",9.2,true);

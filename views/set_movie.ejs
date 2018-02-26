@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+
+			MovieBooking
+
+		</title>
+
+		<meta charset="utf-8">
+ 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  		<link rel="stylesheet" type="text/css" href="public/style.css">
+	</head>
+
+	<body>
+		<% include navbar.ejs %>
+		<center>
+		<table border="1">
+			<tr>
+
+				<th>Movie id</th>
+				<th>Movie name</th>
+				<th>Director</th>
+				<th>Actor 1</th>
+				<th>Actor 2</th>
+				<th>Actor 3</th>
+				<th>Rating</th>
+				<th>Year released</th>
+
+			</tr>
+
+			<% for(var i=0;i < data.length ;i++){ %>
+			<tr>
+					<td><%=data[i].m_id%></td>
+					<td><%=data[i].m_name%></td>
+					<td><%=data[i].d_name%></td>
+					<td><%=data[i].c1%></td>
+					<td><%=data[i].c2%></td>
+					<td><%=data[i].c3%></td>
+					<td><%=data[i].imdb_rating%></td>
+					<td><%=data[i].release_year%></td>
+
+			</tr>
+			<%}%>
+		</table>
+		</center>
+	<form action="/set_movie" method="post">
+
+	<h3>FILL THE BOXES FOR CHANGING THE MOVIE<h3>
+	<input type="text" name="movie_id" placeholder="enter movie id..." required/>
+	<input type="text" name="sc_id" placeholder="enter screen id" required/>
+	<input type="text" name="price" placeholder="enter price" required/>
+	<input type="submit" name="submit" value="change">
+
+	</form>
+	</body>
+	</html>

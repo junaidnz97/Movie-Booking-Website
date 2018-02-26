@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+
+			MovieBooking
+
+		</title>
+
+		<meta charset="utf-8">
+ 	 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  		<link rel="stylesheet" type="text/css" href="public/style.css">
+	</head>
+
+	<body>
+			<% include navbar.ejs %>
+
+			
+			<form action="/adminlogged" method="post" name="form1">
+			<button type="submit" name="x" value="r1">Reset seats screen1</button>
+			<button type="submit" name="x" value="r2">Reset seats screen2</button>
+			<button type="submit" name="x" value="ml">Show movie log</button>
+			<button type="submit" name="x" value="tl">Show ticket log</button>
+			<button type="submit" name="x" value="cr">Show current revenue</button>
+
+			</form>
+			<form action="/search" method="post">
+
+				<button type="submit" name="x" value="s">Search and Change Movie</button>
+
+			</form>
+
+	
+			<br>
+			<div style="color: black">
+
+
+
+				<center>
+				<table border="1">
+				  <tr>
+    				<th>Movie_ID</th>
+    				<th>Screen_ID</th>
+    				<th>Action</th>
+    				 <th>Date</th>
+
+  				</tr>
+
+  				<% mlog.forEach(function(item){ %>
+
+						<tr>
+						<td width="100px">
+							<%= item.m_id %>
+						</td>
+						<td width="100px">
+							<%= item.sc_id %>
+						</td>
+						<td width="100px">
+							<%= item.action %>
+						</td>
+						<td >
+							<%= item.date %>
+						</td>
+						</tr>
+
+
+
+					<% }); %>
+
+				</table>
+				</center>
+
+
+</body>
+			</div>
+
+
+	</body>
+
+</html>

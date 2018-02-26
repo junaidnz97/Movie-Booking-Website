@@ -1,0 +1,56 @@
+body{
+    background: #0d1521;
+    font-family: tahoma;
+    color: #fff;
+    padding: 30px;
+}
+h1{
+  font-size: 48px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  padding : 30px;
+}
+h2{
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+h3{
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+}
+p,li{
+  font-size: 16px;
+  text-align: center;
+}
+.button {
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 0px;
+    cursor: pointer;
+}
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    color: "blue";
+    width: 100%;
+}
+.navbar-brand {
+	float:none;
+
+}
+.container {
+    width: 200px;
+    height: 200px;
+}

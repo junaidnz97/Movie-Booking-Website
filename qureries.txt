@@ -1,0 +1,157 @@
+1)
+
+	select m_name,sc_id from movie_data,movie 
+     where movie_data.m_id in (select m_id from movie) 
+     and movie_data.m_id = movie.m_id
+
+ 2)
+
+ 	select m_name,row, cols, status from screen,movie_data,movie
+    where screen.sc_id = ${req.body.screen} and movie.m_id=movie_data.m_id and movie.sc_id=screen.sc_id
+
+3)
+
+	update screen set status = false
+    where sc_id in (select sc_id from ticket where b_id = "${bid}" and phone="${phone}") and
+    seat_no in (select seat_no from ticket where b_id = "${bid}" and phone="${phone}")
+
+4)
+
+	select sc_id,seat_no,row,cols from screen where
+    seat_no in (select seat_no from ticket where b_id = "${bid}" and phone = "${phone}") and
+    sc_id in (select sc_id from ticket where b_id = "${bid}" and phone = "${phone}")
+
+5)
+
+	select m_name,imdb_rating,p_name from movie_data,crew,personals
+     where movie_data.m_id in (select m_id from movie)
+     and movie_data.m_id=crew.m_id 
+     and crew.dir_id=personals.p_id
+
+6)
+
+	"select ticket.sc_id,seat_no,b_id,m_name,cus_name from ticket,movie,movie_data \
+     where b_id=\""+bid+"\" and phone = \""+phone+"\"\
+     and movie.sc_id = ticket.sc_id and movie.m_id = movie_data.m_id"
+
+7)
+
+	"select price from movie where sc_id="+o[0].sc_id
+
+8)
+
+	insert into movie values("${mname}","${dirname}","${prn}",${rating},1,${req.body.price})
+
+9)
+
+	insert into movie values("${mname}","${dirname}","${prn}",${rating},2,${req.body.price})
+
+10)
+
+	update screen set status=0 where sc_id=1
+
+11)
+
+	delete from ticket where sc_id=1
+
+12)
+
+	select * from movie_log
+
+13)
+
+	select * from ticket_log
+
+14)
+	select price from screen,movie where screen.sc_id=movie.sc_id and status=1
+
+15)
+	select m_name from movie_data
+
+16)
+	select p_name from personals
+
+17)
+
+	select distinct p_name from personals,crew where personals.p_id=crew.dir_id
+
+18)
+
+	select min(release_year) as start, max(release_year) as end from movie_data
+
+19)
+
+	"delete from ticket where sc_id="+sc_id
+
+20)
+
+	update screen set status = 0 where sc_id="+sc_id
+
+21)
+
+	"delete from movie where sc_id="+sc_id
+
+22)
+
+	"insert into movie (m_id,price,sc_id) values ("+mov_id+","+price+","+sc_id+")"
+
+23)
+
+	select movie_data.m_id,movie_data.m_name, p_name as d_name,c1,c2,c3,imdb_rating,release_year
+    from movie_data,crew,personals,
+    (select m_name,gender,p_name as c1 from movie_data,crew,personals where (movie_data.m_id=crew.m_id and crew.c_id1=personals.p_id)) as T1,
+    (select m_name,gender,p_name as c2 from movie_data,crew,personals where (movie_data.m_id=crew.m_id and crew.c_id2=personals.p_id)) as T2,
+    (select m_name,gender,p_name as c3 from movie_data,crew,personals where (movie_data.m_id=crew.m_id and crew.c_id3=personals.p_id)) as T3
+    where movie_data.m_id=crew.m_id and	crew.dir_id=personals.p_id
+    and	movie_data.m_name = T1.m_name and movie_data.m_name= T2.m_name and T3.m_name = movie_data.m_name
+
+24)
+
+	"select p_name,avg(imdb_rating) as rating from movie_data,crew,personals where crew.m_id = movie_data.m_id"+ " and(p_id = c_id1 or p_id=c_id2 or p_id = c_id3) group by p_name;"
+
+25)
+
+	"select max(rating) as rating from (select p_name,avg(imdb_rating) as rating"+
+	" from movie_data,crew,personals where crew.m_id = movie_data.m_id"+
+	" and(p_id = c_id1 or p_id=c_id2 or p_id = c_id3) group by p_name) as T1;"
+
+26)
+
+	select m_name,p_name  from movie_data,crew,personals where gender="F"'+ 
+	' and movie_data.m_id=crew.m_id and (p_id=c_id1 or p_id =c_id2 or p_id = c_id3);'
+
+27)
+
+	'select distinct d_name from (select movie_data.m_id as m1,p_name'+
+	' from movie_data,crew,personals where gender="F" and movie_data.m_id=crew.m_id and'+
+	' (p_id=c_id1 or p_id =c_id2 or p_id = c_id3)) as T1,'+
+	' (select movie_data.m_id as m2,p_name as d_name from personals,crew,movie_data'+
+	' where p_id = dir_id and crew.m_id = movie_data.m_id) as T2 where m1 = m2;'
+
+28)
+
+	'select distinct(p_name) from personals,crew,movie_data'+
+	' where movie_data.m_id = crew.m_id'+
+	' and (p_id = c_id1 or p_id = c_id2 or p_id = c_id3)'+
+	' and p_id in (select p_id from movie_data,crew,personals'+
+	' where movie_data.m_id = crew.m_id and (p_id = c_id1 or p_id = c_id2 or p_id = c_id3)'+
+	' group by p_id having count(movie_data.m_id)=(select max(c) from'+
+	' (select count(movie_data.m_id) as c from movie_data,crew,personals'+
+	' where movie_data.m_id = crew.m_id and (p_id = c_id1 or p_id = c_id2 or p_id = c_id3) group by p_id) as T1));';
+
+29)
+
+	create trigger tr_movie_ins before insert on movie for each row begin insert into movie_log set  sc_id=new.sc_id,m_id=new.m_id,action="Inserted",date=NOW();
+
+30)
+
+	create trigger tr_movie_del after delete on movie for each row begin insert into movie_log set  sc_id=old.sc_id,m_id=old.m_id,action="Deleted",date=NOW();end;|
+
+31)
+
+	create trigger tr_ticket_ins before insert on ticket for each row begin insert into ticket_log set sc_id=new.sc_id,seat_no=new.seat_no,b_id=new.b_id,phone=new.phone,action="inserted",date=NOW();  end;|
+
+32)
+	
+	 create trigger tr_ticket_del before delete on ticket for each row begin insert into ticket_log set sc_id=old.sc_id,seat_no=old.seat_no,b_id=old.b_id,phone=old.phone,action="canceled",date=NOW();  end;|
+
