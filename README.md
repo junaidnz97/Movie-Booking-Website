@@ -1,2 +1,2 @@
 # Movie-Booking-Website
-A movie booking webstite using nodejs and mysql.
+A movie booking website using nodejs and mysql.
